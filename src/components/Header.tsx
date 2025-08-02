@@ -1,0 +1,108 @@
+import { useState, useEffect } from 'react';
+import { AnimatedButton } from './ui/animated-button';
+import { Menu, X } from 'lucide-react';
+
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { label: 'Inicio', href: '#inicio' },
+    { label: 'Soluciones', href: '#soluciones' },
+    { label: 'Proceso', href: '#proceso' },
+    { label: 'Testimonios', href: '#testimonios' },
+    { label: 'Contacto', href: '#contacto' },
+  ];
+
+  return (
+    <>
+      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'glass backdrop-blur-xl border-b border-border/20' : 'bg-transparent'
+      }`}>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center animate-glow">
+                  <span className="text-white font-bold text-xl">K</span>
+                </div>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-gradient">Krezco</h1>
+                <p className="text-xs text-muted-foreground">Digital</p>
+              </div>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-foreground hover:text-brand-primary transition-colors duration-300 font-medium"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* CTA Button */}
+            <div className="hidden md:block">
+              <AnimatedButton variant="hero" size="lg">
+                Consulta Gratis
+              </AnimatedButton>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-foreground hover:text-brand-primary transition-colors"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          <div className="absolute top-0 right-0 h-full w-64 glass-strong p-6 mt-20">
+            <nav className="flex flex-col space-y-6">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-foreground hover:text-brand-primary transition-colors duration-300 font-medium text-lg"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <div className="pt-4">
+                <AnimatedButton variant="hero" size="lg" className="w-full">
+                  Consulta Gratis
+                </AnimatedButton>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Header;
