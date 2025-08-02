@@ -8,9 +8,9 @@
 @layer base {
   :root {
     /* Krezco Brand Colors */
-    --brand-primary: 240 95% 48%; /* #160CE8 */
-    --brand-secondary: 143 100% 58%; /* #29FF8D */
-    --brand-accent: 356 100% 59%; /* #FF2930 */
+    --brand-primary: 195 100% 56%; /* #21cfff */
+    --brand-secondary: 195 100% 56%; /* #21cfff */
+    --brand-accent: 287 100% 65%; /* #cf4dff */
     --brand-dark: 225 25% 19%; /* #25283D */
     
     /* Modern UI Colors */
@@ -48,8 +48,8 @@
     --shadow-elevation: 0 20px 40px -12px hsl(0 0% 0% / 0.4);
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(var(--brand-secondary)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-primary) / 0.9), hsl(var(--brand-secondary) / 0.9));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(var(--brand-accent)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-primary) / 0.9), hsl(var(--brand-accent) / 0.9));
     --gradient-accent: linear-gradient(135deg, hsl(var(--brand-accent)), hsl(var(--brand-primary)));
     --gradient-glass: linear-gradient(135deg, hsl(var(--surface) / 0.8), hsl(var(--surface-elevated) / 0.4));
     
@@ -89,7 +89,7 @@
     @apply bg-background text-foreground antialiased;
     background-image: 
       radial-gradient(circle at 25% 25%, hsl(var(--brand-primary) / 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, hsl(var(--brand-secondary) / 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 75% 75%, hsl(var(--brand-accent) / 0.05) 0%, transparent 50%);
     min-height: 100vh;
   }
   
@@ -270,7 +270,7 @@
   
   .matrix-char {
     position: absolute;
-    color: hsl(var(--brand-secondary));
+    color: hsl(var(--brand-primary));
     font-family: 'Courier New', monospace;
     font-size: 14px;
     animation: matrix-rain linear infinite;
