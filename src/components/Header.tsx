@@ -54,7 +54,7 @@ const Header = () => {
             {/* CTA Button */}
             <div className="hidden md:block">
               <AnimatedButton variant="hero" size="lg">
-                Consulta Gratis
+                Agenda una consulta ahora!
               </AnimatedButton>
             </div>
 
@@ -90,7 +90,7 @@ const Header = () => {
               ))}
               <div className="pt-4">
                 <AnimatedButton variant="hero" size="lg" className="w-full">
-                  Consulta Gratis
+                  Agenda una consulta ahora!
                 </AnimatedButton>
               </div>
             </nav>
