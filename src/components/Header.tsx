@@ -34,7 +34,7 @@ const Header = () => {
               <img 
                 src="/lovable-uploads/ca98e6a0-6a33-42ef-a71d-74da28a170a6.png" 
                 alt="Krezco Digital" 
-                className="h-16 w-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(33,207,255,0.5)] cursor-pointer animate-pulse"
+                className="h-16 w-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(33,207,255,0.5)] cursor-pointer slow-pulse"
               />
             </div>
 
