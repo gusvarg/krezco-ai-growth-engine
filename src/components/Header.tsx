@@ -6,7 +6,6 @@ import SchedulingPopup from './SchedulingPopup';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSchedulingOpen, setIsSchedulingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,11 +54,7 @@ const Header = () => {
 
             {/* CTA Button */}
             <div className="hidden md:block">
-              <AnimatedButton 
-                variant="hero" 
-                size="lg"
-                onClick={() => setIsSchedulingOpen(true)}
-              >
+              <AnimatedButton variant="hero" size="lg">
                 Agenda una consulta ahora!
               </AnimatedButton>
             </div>
@@ -95,15 +90,7 @@ const Header = () => {
                 </a>
               ))}
               <div className="pt-4">
-                <AnimatedButton 
-                  variant="hero" 
-                  size="lg" 
-                  className="w-full"
-                  onClick={() => {
-                    setIsSchedulingOpen(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
+                <AnimatedButton variant="hero" size="lg" className="w-full">
                   Agenda una consulta ahora!
                 </AnimatedButton>
               </div>
@@ -112,11 +99,8 @@ const Header = () => {
         </div>
       )}
       
-      {/* Scheduling Popup */}
-      <SchedulingPopup 
-        isOpen={isSchedulingOpen} 
-        onClose={() => setIsSchedulingOpen(false)} 
-      />
+      {/* Cal.com Floating Button */}
+      <SchedulingPopup />
     </>
   );
 };
