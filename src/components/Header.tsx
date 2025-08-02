@@ -30,16 +30,12 @@ const Header = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center animate-glow">
-                  <span className="text-white font-bold text-xl">K</span>
-                </div>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gradient">Krezco</h1>
-                <p className="text-xs text-muted-foreground">Digital</p>
-              </div>
+            <div className="flex items-center">
+              <img 
+                src="/lovable-uploads/ca98e6a0-6a33-42ef-a71d-74da28a170a6.png" 
+                alt="Krezco Digital" 
+                className="h-8 w-auto"
+              />
             </div>
 
             {/* Desktop Navigation */}
