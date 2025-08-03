@@ -2,30 +2,23 @@ import { useEffect, useRef } from 'react';
 import { AnimatedButton } from './ui/animated-button';
 import { ArrowDown, Sparkles, Zap, TrendingUp, Brain, Cpu, Network, Bot, CircuitBoard, Lightbulb, Rocket, Star } from 'lucide-react';
 import MatrixBackground from './MatrixBackground';
-
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-slide-up');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slide-up');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
     const elements = heroRef.current?.querySelectorAll('.animate-on-scroll');
-    elements?.forEach((el) => observer.observe(el));
-
+    elements?.forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <MatrixBackground />
       
       {/* Espacial Background */}
@@ -33,48 +26,82 @@ const HeroSection = () => {
       
       {/* Estrellas espaciales */}
       <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
-          <Star 
-            key={i}
-            className="absolute text-white animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`
-            }}
-          />
-        ))}
+        {[...Array(50)].map((_, i) => <Star key={i} className="absolute text-white animate-pulse" style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        width: `${Math.random() * 4 + 2}px`,
+        height: `${Math.random() * 4 + 2}px`,
+        animationDelay: `${Math.random() * 3}s`,
+        animationDuration: `${Math.random() * 2 + 2}s`
+      }} />)}
       </div>
       
       {/* Iconos IA flotantes */}
       <div className="absolute inset-0 pointer-events-none">
-        <Brain className="absolute w-8 h-8 animate-float opacity-30" 
-               style={{left: '10%', top: '20%', animationDelay: '0s', color: '#e1f5ff'}} />
-        <Cpu className="absolute w-6 h-6 animate-float opacity-40" 
-             style={{right: '15%', top: '15%', animationDelay: '1s', color: '#e1f5ff'}} />
-        <Network className="absolute w-7 h-7 animate-float opacity-35" 
-                 style={{left: '20%', bottom: '25%', animationDelay: '2s', color: '#e1f5ff'}} />
-        <Bot className="absolute w-9 h-9 animate-float opacity-30" 
-             style={{right: '10%', bottom: '30%', animationDelay: '0.5s', color: '#e1f5ff'}} />
-        <CircuitBoard className="absolute w-6 h-6 animate-float opacity-40" 
-                      style={{left: '70%', top: '40%', animationDelay: '1.5s', color: '#e1f5ff'}} />
-        <Lightbulb className="absolute w-7 h-7 animate-float opacity-35" 
-                   style={{left: '80%', bottom: '20%', animationDelay: '2.5s', color: '#e1f5ff'}} />
-        <Rocket className="absolute w-8 h-8 animate-float opacity-30" 
-               style={{right: '25%', top: '60%', animationDelay: '3s', color: '#e1f5ff'}} />
-        <Sparkles className="absolute w-5 h-5 animate-float opacity-45" 
-                  style={{left: '30%', top: '70%', animationDelay: '1.8s', color: '#e1f5ff'}} />
-        <Zap className="absolute w-6 h-6 animate-float opacity-40" 
-             style={{right: '40%', bottom: '40%', animationDelay: '2.2s', color: '#e1f5ff'}} />
+        <Brain className="absolute w-8 h-8 animate-float opacity-30" style={{
+        left: '10%',
+        top: '20%',
+        animationDelay: '0s',
+        color: '#e1f5ff'
+      }} />
+        <Cpu className="absolute w-6 h-6 animate-float opacity-40" style={{
+        right: '15%',
+        top: '15%',
+        animationDelay: '1s',
+        color: '#e1f5ff'
+      }} />
+        <Network className="absolute w-7 h-7 animate-float opacity-35" style={{
+        left: '20%',
+        bottom: '25%',
+        animationDelay: '2s',
+        color: '#e1f5ff'
+      }} />
+        <Bot className="absolute w-9 h-9 animate-float opacity-30" style={{
+        right: '10%',
+        bottom: '30%',
+        animationDelay: '0.5s',
+        color: '#e1f5ff'
+      }} />
+        <CircuitBoard className="absolute w-6 h-6 animate-float opacity-40" style={{
+        left: '70%',
+        top: '40%',
+        animationDelay: '1.5s',
+        color: '#e1f5ff'
+      }} />
+        <Lightbulb className="absolute w-7 h-7 animate-float opacity-35" style={{
+        left: '80%',
+        bottom: '20%',
+        animationDelay: '2.5s',
+        color: '#e1f5ff'
+      }} />
+        <Rocket className="absolute w-8 h-8 animate-float opacity-30" style={{
+        right: '25%',
+        top: '60%',
+        animationDelay: '3s',
+        color: '#e1f5ff'
+      }} />
+        <Sparkles className="absolute w-5 h-5 animate-float opacity-45" style={{
+        left: '30%',
+        top: '70%',
+        animationDelay: '1.8s',
+        color: '#e1f5ff'
+      }} />
+        <Zap className="absolute w-6 h-6 animate-float opacity-40" style={{
+        right: '40%',
+        bottom: '40%',
+        animationDelay: '2.2s',
+        color: '#e1f5ff'
+      }} />
       </div>
       
       {/* Orbes de luz con gradientes */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-primary opacity-20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-secondary opacity-15 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
-      <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-accent opacity-10 rounded-full blur-3xl animate-float" style={{animationDelay: '4s'}} />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-secondary opacity-15 rounded-full blur-3xl animate-float" style={{
+      animationDelay: '2s'
+    }} />
+      <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-accent opacity-10 rounded-full blur-3xl animate-float" style={{
+      animationDelay: '4s'
+    }} />
       
       <div ref={heroRef} className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -102,14 +129,14 @@ const HeroSection = () => {
 
           {/* Subheadline */}
           <div className="animate-on-scroll mb-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-brand-accent mb-2">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 text-[#cf4dff]">
               Es hora de darle el poder de la Inteligencia Artificial.
             </h2>
           </div>
 
           {/* Description */}
           <div className="animate-on-scroll mb-8">
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-slate-50">
               Sin rodeos, ¡vamos al grano! Transformamos tu negocio en una máquina de crecimiento inteligente. 
               ¿Cómo? Usamos IA para crear activos digitales, automatizar tus ventas y lanzar campañas de marketing 
               que te consiguen resultados de verdad.
@@ -162,8 +189,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
