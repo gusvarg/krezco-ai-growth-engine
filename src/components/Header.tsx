@@ -96,11 +96,8 @@ const Header = () => {
               </div>
             </nav>
           </div>
-        </div>
+      </div>
       )}
-      
-      {/* Cal.com Floating Button */}
-      <SchedulingPopup />
     </>
   );
 };
