@@ -8,38 +8,77 @@ const MatrixBackground = () => {
     if (!container) return;
 
     const characters = '01AIגכ{}[]()@#$%^&*';
-    const columns = Math.floor(window.innerWidth / 20);
+    let intervalId: NodeJS.Timeout;
+    const activeChars: HTMLDivElement[] = [];
 
-    // Create matrix effect
+    // Create matrix effect with better cleanup
     const createMatrixChar = () => {
+      if (activeChars.length > 30) {
+        // Limit number of active characters to prevent memory issues
+        const oldChar = activeChars.shift();
+        if (oldChar && oldChar.parentNode) {
+          oldChar.parentNode.removeChild(oldChar);
+        }
+      }
+
       const char = document.createElement('div');
-      char.className = 'matrix-char animate-matrix';
+      char.className = 'fixed matrix-char animate-matrix pointer-events-none z-0';
       char.textContent = characters[Math.floor(Math.random() * characters.length)];
       char.style.left = `${Math.random() * 100}%`;
+      char.style.top = '0px';
+      char.style.color = '#e1f5ff';
+      char.style.fontSize = '14px';
+      char.style.opacity = '0.3';
       char.style.animationDuration = `${Math.random() * 3 + 2}s`;
       char.style.animationDelay = `${Math.random() * 2}s`;
       
       container.appendChild(char);
+      activeChars.push(char);
 
-      // Remove after animation
+      // Remove after animation with better cleanup
       setTimeout(() => {
-        if (char.parentNode) {
-          char.parentNode.removeChild(char);
+        if (char.parentNode === container) {
+          container.removeChild(char);
+          const index = activeChars.indexOf(char);
+          if (index > -1) {
+            activeChars.splice(index, 1);
+          }
         }
       }, 5000);
     };
 
-    // Create characters periodically
-    const interval = setInterval(() => {
-      if (Math.random() > 0.7) {
+    // Create characters with reduced frequency
+    intervalId = setInterval(() => {
+      if (Math.random() > 0.8 && document.visibilityState === 'visible') {
         createMatrixChar();
       }
-    }, 200);
+    }, 300);
+
+    // Cleanup on visibility change
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        activeChars.forEach(char => {
+          if (char.parentNode === container) {
+            container.removeChild(char);
+          }
+        });
+        activeChars.length = 0;
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
-      clearInterval(interval);
+      clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (container) {
-        container.innerHTML = '';
+        // Clean up all remaining characters
+        activeChars.forEach(char => {
+          if (char.parentNode === container) {
+            container.removeChild(char);
+          }
+        });
+        activeChars.length = 0;
       }
     };
   }, []);
