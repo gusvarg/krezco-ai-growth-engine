@@ -2,8 +2,11 @@ import { useEffect, useRef } from 'react';
 import { AnimatedButton } from './ui/animated-button';
 import { ArrowDown, Sparkles, Zap, TrendingUp, Brain, Cpu, Network, Bot, CircuitBoard, Lightbulb, Rocket, Star } from 'lucide-react';
 import MatrixBackground from './MatrixBackground';
+import { useParallax } from '@/hooks/useParallax';
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const parallaxRef = useParallax(0.3);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -18,7 +21,7 @@ const HeroSection = () => {
     elements?.forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-  return <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section ref={parallaxRef} id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden parallax-section">
       <MatrixBackground />
       
       {/* Espacial Background */}

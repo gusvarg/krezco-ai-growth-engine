@@ -238,6 +238,18 @@
     text-shadow: 0 0 20px hsl(var(--brand-primary) / 0.5);
   }
   
+  /* Parallax Sections */
+  .parallax-section {
+    will-change: transform;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+  
+  /* Smooth transitions for parallax */
+  * {
+    scroll-behavior: smooth;
+  }
+  
   /* Scrollbar */
   ::-webkit-scrollbar {
     width: 8px;

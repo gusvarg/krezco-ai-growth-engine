@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { TrendingDown, Telescope, HelpCircle, FileX } from 'lucide-react';
+import { useParallax } from '@/hooks/useParallax';
 
 const ProblemsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const parallaxRef = useParallax(0.4);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,7 +54,7 @@ const ProblemsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-surface/50">
+    <section ref={parallaxRef} className="py-20 bg-surface/50 parallax-section">
       <div className="container mx-auto px-4">
         <div ref={sectionRef} className="max-w-6xl mx-auto">
           {/* Section Header */}
