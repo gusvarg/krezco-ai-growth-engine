@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { AnimatedButton } from './ui/animated-button';
-import { ArrowDown, Sparkles, Zap, TrendingUp } from 'lucide-react';
+import { ArrowDown, Sparkles, Zap, TrendingUp, Brain, Cpu, Network, Bot, CircuitBoard, Lightbulb, Rocket, Star } from 'lucide-react';
 import MatrixBackground from './MatrixBackground';
 
 const HeroSection = () => {
@@ -28,10 +28,53 @@ const HeroSection = () => {
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <MatrixBackground />
       
-      {/* Background Gradients */}
+      {/* Espacial Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-surface" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+      
+      {/* Estrellas espaciales */}
+      <div className="absolute inset-0">
+        {[...Array(50)].map((_, i) => (
+          <Star 
+            key={i}
+            className="absolute text-white animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${Math.random() * 2 + 2}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Iconos IA flotantes */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Brain className="absolute w-8 h-8 text-gradient animate-float opacity-30" 
+               style={{left: '10%', top: '20%', animationDelay: '0s'}} />
+        <Cpu className="absolute w-6 h-6 text-gradient animate-float opacity-40" 
+             style={{right: '15%', top: '15%', animationDelay: '1s'}} />
+        <Network className="absolute w-7 h-7 text-gradient animate-float opacity-35" 
+                 style={{left: '20%', bottom: '25%', animationDelay: '2s'}} />
+        <Bot className="absolute w-9 h-9 text-gradient animate-float opacity-30" 
+             style={{right: '10%', bottom: '30%', animationDelay: '0.5s'}} />
+        <CircuitBoard className="absolute w-6 h-6 text-gradient animate-float opacity-40" 
+                      style={{left: '70%', top: '40%', animationDelay: '1.5s'}} />
+        <Lightbulb className="absolute w-7 h-7 text-gradient animate-float opacity-35" 
+                   style={{left: '80%', bottom: '20%', animationDelay: '2.5s'}} />
+        <Rocket className="absolute w-8 h-8 text-gradient animate-float opacity-30" 
+               style={{right: '25%', top: '60%', animationDelay: '3s'}} />
+        <Sparkles className="absolute w-5 h-5 text-gradient animate-float opacity-45" 
+                  style={{left: '30%', top: '70%', animationDelay: '1.8s'}} />
+        <Zap className="absolute w-6 h-6 text-gradient animate-float opacity-40" 
+             style={{right: '40%', bottom: '40%', animationDelay: '2.2s'}} />
+      </div>
+      
+      {/* Orbes de luz con gradientes */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-primary opacity-20 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-secondary opacity-15 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+      <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-accent opacity-10 rounded-full blur-3xl animate-float" style={{animationDelay: '4s'}} />
       
       <div ref={heroRef} className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
