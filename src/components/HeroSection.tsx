@@ -51,24 +51,24 @@ const HeroSection = () => {
       
       {/* Iconos IA flotantes */}
       <div className="absolute inset-0 pointer-events-none">
-        <Brain className="absolute w-8 h-8 text-gradient animate-float opacity-30" 
-               style={{left: '10%', top: '20%', animationDelay: '0s'}} />
-        <Cpu className="absolute w-6 h-6 text-gradient animate-float opacity-40" 
-             style={{right: '15%', top: '15%', animationDelay: '1s'}} />
-        <Network className="absolute w-7 h-7 text-gradient animate-float opacity-35" 
-                 style={{left: '20%', bottom: '25%', animationDelay: '2s'}} />
-        <Bot className="absolute w-9 h-9 text-gradient animate-float opacity-30" 
-             style={{right: '10%', bottom: '30%', animationDelay: '0.5s'}} />
-        <CircuitBoard className="absolute w-6 h-6 text-gradient animate-float opacity-40" 
-                      style={{left: '70%', top: '40%', animationDelay: '1.5s'}} />
-        <Lightbulb className="absolute w-7 h-7 text-gradient animate-float opacity-35" 
-                   style={{left: '80%', bottom: '20%', animationDelay: '2.5s'}} />
-        <Rocket className="absolute w-8 h-8 text-gradient animate-float opacity-30" 
-               style={{right: '25%', top: '60%', animationDelay: '3s'}} />
-        <Sparkles className="absolute w-5 h-5 text-gradient animate-float opacity-45" 
-                  style={{left: '30%', top: '70%', animationDelay: '1.8s'}} />
-        <Zap className="absolute w-6 h-6 text-gradient animate-float opacity-40" 
-             style={{right: '40%', bottom: '40%', animationDelay: '2.2s'}} />
+        <Brain className="absolute w-8 h-8 animate-float opacity-30" 
+               style={{left: '10%', top: '20%', animationDelay: '0s', color: '#e1f5ff'}} />
+        <Cpu className="absolute w-6 h-6 animate-float opacity-40" 
+             style={{right: '15%', top: '15%', animationDelay: '1s', color: '#e1f5ff'}} />
+        <Network className="absolute w-7 h-7 animate-float opacity-35" 
+                 style={{left: '20%', bottom: '25%', animationDelay: '2s', color: '#e1f5ff'}} />
+        <Bot className="absolute w-9 h-9 animate-float opacity-30" 
+             style={{right: '10%', bottom: '30%', animationDelay: '0.5s', color: '#e1f5ff'}} />
+        <CircuitBoard className="absolute w-6 h-6 animate-float opacity-40" 
+                      style={{left: '70%', top: '40%', animationDelay: '1.5s', color: '#e1f5ff'}} />
+        <Lightbulb className="absolute w-7 h-7 animate-float opacity-35" 
+                   style={{left: '80%', bottom: '20%', animationDelay: '2.5s', color: '#e1f5ff'}} />
+        <Rocket className="absolute w-8 h-8 animate-float opacity-30" 
+               style={{right: '25%', top: '60%', animationDelay: '3s', color: '#e1f5ff'}} />
+        <Sparkles className="absolute w-5 h-5 animate-float opacity-45" 
+                  style={{left: '30%', top: '70%', animationDelay: '1.8s', color: '#e1f5ff'}} />
+        <Zap className="absolute w-6 h-6 animate-float opacity-40" 
+             style={{right: '40%', bottom: '40%', animationDelay: '2.2s', color: '#e1f5ff'}} />
       </div>
       
       {/* Orbes de luz con gradientes */}
