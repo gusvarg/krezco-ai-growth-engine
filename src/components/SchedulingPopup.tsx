@@ -7,7 +7,9 @@ const SchedulingPopup = () => {
       const cal = await getCalApi({ namespace: "consultoria-gratuita" });
       cal("floatingButton", {
         calLink: "krezco.digital/consultoria-gratuita",
-        config: { layout: "month_view" }
+        config: { layout: "month_view" },
+        buttonText: "",
+        buttonPosition: "bottom-right"
       });
       cal("ui", {
         cssVarsPerTheme: {
