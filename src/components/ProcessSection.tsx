@@ -1,44 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { MessageCircle, Cpu, Users, Rocket, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProcessSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isInView, setIsInView] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Parallax scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isInView) {
-        setLastScrollY(scrollY);
-        setScrollY(window.scrollY);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isInView, scrollY]);
-
-  // Intersection observer for parallax
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-        });
-      },
-      { threshold: 0 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   // Auto-rotate steps every 5 seconds
   useEffect(() => {
@@ -50,14 +15,6 @@ const ProcessSection = () => {
 
     return () => clearInterval(interval);
   }, [isPaused]);
-
-  // Calculate zoom effect based on scroll direction
-  const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
-  const zoomScale = isInView ? 
-    (scrollDirection === 'down' ? 
-      Math.min(1.2, 1 + (scrollY * 0.0002)) : 
-      Math.max(0.8, 1 - (scrollY * 0.0001))
-    ) : 1;
 
   const steps = [
     {
@@ -110,17 +67,15 @@ const ProcessSection = () => {
   const IconComponent = currentStep.icon;
 
   return (
-    <section ref={sectionRef} id="proceso" className="min-h-screen relative overflow-hidden">
-      {/* Main background with parallax */}
+    <section id="proceso" className="min-h-screen relative overflow-hidden">
+      {/* Main background */}
       <div 
-        className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900"
+        className="absolute inset-0"
         style={{
           backgroundImage: "url('/lovable-uploads/cb257afb-0fd3-4bee-92fc-fe945bbbfbeb.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          transform: `scale(${zoomScale})`,
-          transition: 'transform 0.3s ease-out'
+          backgroundRepeat: 'no-repeat'
         }}
       />
       
@@ -131,8 +86,7 @@ const ProcessSection = () => {
           <div 
             className="absolute inset-0 opacity-20"
             style={{
-              background: 'radial-gradient(ellipse at center top, rgba(139, 92, 246, 0.3) 0%, transparent 60%)',
-              transform: `translateY(${scrollY * -0.1}px)`
+              background: 'radial-gradient(ellipse at center top, rgba(139, 92, 246, 0.3) 0%, transparent 60%)'
             }}
           />
         </div>
