@@ -113,12 +113,15 @@ const ProcessSection = () => {
     <section ref={sectionRef} id="proceso" className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900">
       {/* Background Image with parallax zoom effect */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-multiply transition-transform duration-300 ease-out"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-300 ease-out"
         style={{
           backgroundImage: "url('/lovable-uploads/770a16d6-8efe-4691-bbf2-50710713e091.png')",
           transform: `scale(${zoomScale})`
         }}
       />
+      
+      {/* Gradient overlay to blend with background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-purple-900/40 to-slate-900/60" />
       
       {/* Enhanced glass overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/10" />
