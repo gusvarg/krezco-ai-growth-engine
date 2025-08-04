@@ -1,4 +1,5 @@
-import { MessageCircle, Mail, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { MessageCircle, Mail, Linkedin, Instagram, Facebook, Brain, Cpu, Network, Bot, CircuitBoard, Lightbulb, Rocket, Sparkles, Zap, Star } from 'lucide-react';
+import MatrixBackground from './MatrixBackground';
 
 const Footer = () => {
   const quickLinks = [
@@ -20,8 +21,102 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-brand-dark border-t border-border/20">
-      <div className="container mx-auto px-4 py-16">
+    <footer className="relative overflow-hidden geometric-bg border-t border-border/20">
+      <MatrixBackground />
+      
+      {/* Modern Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-surface to-surface-elevated" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/5 via-transparent to-brand-accent/5" />
+      
+      {/* Geometric Pattern Overlay */}
+      <div className="absolute inset-0 pattern-dots opacity-30" />
+      
+      {/* Floating Geometric Shapes */}
+      <div className="absolute inset-0">
+        {[...Array(20)].map((_, i) => (
+          <Star 
+            key={i} 
+            className="absolute text-brand-primary animate-pulse" 
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 2 + 1}px`,
+              height: `${Math.random() * 2 + 1}px`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${Math.random() * 2 + 2}s`
+            }} 
+          />
+        ))}
+      </div>
+      
+      {/* Iconos IA flotantes */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Brain className="absolute w-6 h-6 animate-float opacity-20" style={{
+          left: '10%',
+          top: '20%',
+          animationDelay: '0s',
+          color: '#e1f5ff'
+        }} />
+        <Cpu className="absolute w-5 h-5 animate-float opacity-25" style={{
+          right: '15%',
+          top: '15%',
+          animationDelay: '1s',
+          color: '#e1f5ff'
+        }} />
+        <Network className="absolute w-6 h-6 animate-float opacity-20" style={{
+          left: '20%',
+          bottom: '25%',
+          animationDelay: '2s',
+          color: '#e1f5ff'
+        }} />
+        <Bot className="absolute w-7 h-7 animate-float opacity-20" style={{
+          right: '10%',
+          bottom: '30%',
+          animationDelay: '0.5s',
+          color: '#e1f5ff'
+        }} />
+        <CircuitBoard className="absolute w-5 h-5 animate-float opacity-25" style={{
+          left: '70%',
+          top: '40%',
+          animationDelay: '1.5s',
+          color: '#e1f5ff'
+        }} />
+        <Lightbulb className="absolute w-6 h-6 animate-float opacity-20" style={{
+          left: '80%',
+          bottom: '20%',
+          animationDelay: '2.5s',
+          color: '#e1f5ff'
+        }} />
+        <Rocket className="absolute w-6 h-6 animate-float opacity-20" style={{
+          right: '25%',
+          top: '60%',
+          animationDelay: '3s',
+          color: '#e1f5ff'
+        }} />
+        <Sparkles className="absolute w-4 h-4 animate-float opacity-30" style={{
+          left: '30%',
+          top: '70%',
+          animationDelay: '1.8s',
+          color: '#e1f5ff'
+        }} />
+        <Zap className="absolute w-5 h-5 animate-float opacity-25" style={{
+          right: '40%',
+          bottom: '40%',
+          animationDelay: '2.2s',
+          color: '#e1f5ff'
+        }} />
+      </div>
+      
+      {/* Orbes de luz con gradientes */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-primary opacity-10 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-gradient-secondary opacity-8 rounded-full blur-3xl animate-float" style={{
+        animationDelay: '2s'
+      }} />
+      <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-gradient-accent opacity-6 rounded-full blur-3xl animate-float" style={{
+        animationDelay: '4s'
+      }} />
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-6">
