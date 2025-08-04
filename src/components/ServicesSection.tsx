@@ -4,10 +4,24 @@ import { AnimatedButton } from './ui/animated-button';
 
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+  const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  // Parallax scroll effect
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const handleScroll = () => {
+      if (isInView) {
+        setScrollY(window.scrollY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isInView]);
+
+  useEffect(() => {
+    const animationObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -18,10 +32,26 @@ const ServicesSection = () => {
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
-    elements?.forEach((el) => observer.observe(el));
+    const parallaxObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+        });
+      },
+      { threshold: 0 }
+    );
 
-    return () => observer.disconnect();
+    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
+    elements?.forEach((el) => animationObserver.observe(el));
+
+    if (sectionRef.current) {
+      parallaxObserver.observe(sectionRef.current);
+    }
+
+    return () => {
+      animationObserver.disconnect();
+      parallaxObserver.disconnect();
+    };
   }, []);
 
   const services = [
@@ -121,14 +151,21 @@ const ServicesSection = () => {
     }
   ];
 
+  // Calculate parallax zoom effect
+  const zoomScale = isInView ? Math.max(0.8, Math.min(1.2, 1 + (scrollY * 0.0001))) : 1;
+  const starsTransform = isInView ? `scale(${zoomScale}) translateZ(0)` : 'scale(1)';
+
   return (
-    <section id="soluciones" className="py-12 md:py-20 relative overflow-hidden">
+    <section ref={sectionRef} id="soluciones" className="py-12 md:py-20 relative overflow-hidden">
       {/* Universe Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900" />
       
-      {/* Stars */}
-      <div className="absolute inset-0">
-        {[...Array(150)].map((_, i) => (
+      {/* Stars with parallax zoom */}
+      <div 
+        className="absolute inset-0 transition-transform duration-300 ease-out"
+        style={{ transform: starsTransform }}
+      >
+        {[...Array(195)].map((_, i) => (
           <div
             key={i}
             className="absolute bg-white rounded-full opacity-60 animate-pulse"
@@ -144,9 +181,12 @@ const ServicesSection = () => {
         ))}
       </div>
       
-      {/* Shooting stars */}
-      <div className="absolute inset-0">
-        {[...Array(3)].map((_, i) => (
+      {/* Shooting stars with parallax */}
+      <div 
+        className="absolute inset-0 transition-transform duration-500 ease-out"
+        style={{ transform: `translateY(${scrollY * -0.05}px) scale(${zoomScale * 0.9})` }}
+      >
+        {[...Array(4)].map((_, i) => (
           <div
             key={i}
             className="absolute w-px h-24 bg-gradient-to-t from-transparent via-white to-transparent opacity-70 animate-pulse"
@@ -161,8 +201,11 @@ const ServicesSection = () => {
         ))}
       </div>
       
-      {/* Subtle glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-secondary/5" />
+      {/* Subtle glow effect with parallax */}
+      <div 
+        className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-secondary/5 transition-transform duration-700 ease-out"
+        style={{ transform: `translateY(${scrollY * 0.02}px)` }}
+      />
       
       <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">

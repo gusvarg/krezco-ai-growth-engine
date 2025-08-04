@@ -10,10 +10,24 @@ const ContactSection = () => {
     business: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  // Parallax scroll effect
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const handleScroll = () => {
+      if (isInView) {
+        setScrollY(window.scrollY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isInView]);
+
+  useEffect(() => {
+    const animationObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -24,10 +38,26 @@ const ContactSection = () => {
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
-    elements?.forEach((el) => observer.observe(el));
+    const parallaxObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+        });
+      },
+      { threshold: 0 }
+    );
 
-    return () => observer.disconnect();
+    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
+    elements?.forEach((el) => animationObserver.observe(el));
+
+    if (sectionRef.current) {
+      parallaxObserver.observe(sectionRef.current);
+    }
+
+    return () => {
+      animationObserver.disconnect();
+      parallaxObserver.disconnect();
+    };
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -70,14 +100,20 @@ const ContactSection = () => {
     }
   ];
 
+  // Calculate parallax zoom effect
+  const zoomScale = isInView ? Math.max(0.8, Math.min(1.2, 1 + (scrollY * 0.0001))) : 1;
+
   return (
-    <section id="contacto" className="py-12 md:py-20 relative overflow-hidden">
+    <section ref={sectionRef} id="contacto" className="py-12 md:py-20 relative overflow-hidden">
       {/* Universe Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900" />
       
-      {/* Stars */}
-      <div className="absolute inset-0">
-        {[...Array(80)].map((_, i) => (
+      {/* Stars with parallax zoom */}
+      <div 
+        className="absolute inset-0 transition-transform duration-300 ease-out"
+        style={{ transform: `scale(${zoomScale}) translateZ(0)` }}
+      >
+        {[...Array(104)].map((_, i) => (
           <div
             key={i}
             className="absolute bg-white rounded-full opacity-30 animate-pulse"
@@ -93,8 +129,11 @@ const ContactSection = () => {
         ))}
       </div>
       
-      {/* Gentle cosmic glow */}
-      <div className="absolute inset-0">
+      {/* Gentle cosmic glow with parallax */}
+      <div 
+        className="absolute inset-0 transition-transform duration-500 ease-out"
+        style={{ transform: `translateY(${scrollY * -0.01}px) scale(${zoomScale * 1.02})` }}
+      >
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
       </div>
