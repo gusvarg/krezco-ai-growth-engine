@@ -67,13 +67,17 @@ const ProcessSection = () => {
   const IconComponent = currentStep.icon;
 
   return (
-    <section id="proceso" className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-full blur-3xl" />
-      </div>
+    <section id="proceso" className="min-h-screen relative overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/lovable-uploads/770a16d6-8efe-4691-bbf2-50710713e091.png')"
+        }}
+      />
+      
+      {/* Dark overlay for better readability */}
+      <div className="absolute inset-0 bg-background/40" />
 
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -95,8 +99,8 @@ const ProcessSection = () => {
           >
             {/* Slider Content */}
             <div className="relative h-[500px] md:h-[600px]">
-              <div 
-                className="flex transition-transform duration-1000 ease-in-out h-full"
+               <div 
+                className="flex transition-transform duration-700 ease-out h-full"
                 style={{ transform: `translateX(-${activeStep * 100}%)` }}
               >
                 {steps.map((step, index) => {
@@ -147,16 +151,16 @@ const ProcessSection = () => {
             {/* Navigation Buttons */}
             <button
               onClick={handlePrevStep}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group z-20"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary backdrop-blur-sm border border-brand-primary/20 rounded-full flex items-center justify-center transition-all duration-500 group z-20 shadow-lg hover:shadow-brand-primary/30"
             >
-              <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+              <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" />
             </button>
 
             <button
               onClick={handleNextStep}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group z-20"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary backdrop-blur-sm border border-brand-primary/20 rounded-full flex items-center justify-center transition-all duration-500 group z-20 shadow-lg hover:shadow-brand-primary/30"
             >
-              <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+              <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" />
             </button>
           </div>
 
