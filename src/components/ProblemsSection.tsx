@@ -1,8 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TrendingDown, Telescope, HelpCircle, FileX } from 'lucide-react';
 
 const ProblemsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,11 +64,13 @@ const ProblemsSection = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      {/* Fondo de ondas luminosas */}
+      {/* Fondo de ondas luminosas con parallax */}
       <div 
+        ref={backgroundRef}
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/lovable-uploads/3ceb6d11-9cc8-4884-a7d7-7a2f76851ab6.png')"
+          backgroundImage: "url('/lovable-uploads/3ceb6d11-9cc8-4884-a7d7-7a2f76851ab6.png')",
+          transform: `translateY(${scrollY * 0.5}px)`
         }}
       />
       
