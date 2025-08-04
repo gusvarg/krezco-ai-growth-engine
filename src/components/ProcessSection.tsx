@@ -1,37 +1,20 @@
-import { useEffect, useRef } from 'react';
-import { MessageCircle, Cpu, Users, Rocket, ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { MessageCircle, Cpu, Users, Rocket, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProcessSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
+  // Auto-rotate steps every 4 seconds
   useEffect(() => {
-    const animationObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const steps = entry.target.querySelectorAll('.process-step:not(.animated)');
-            steps.forEach((step, index) => {
-              setTimeout(() => {
-                step.classList.add('animate-slide-up', 'animated');
-                step.classList.remove('opacity-0');
-              }, index * 300);
-            });
-            // Desconectar el observer después de animar
-            animationObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % 4);
+    }, 4000);
 
-    if (sectionRef.current) {
-      animationObserver.observe(sectionRef.current);
-    }
-
-    return () => {
-      animationObserver.disconnect();
-    };
-  }, []);
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   const steps = [
     {
@@ -41,7 +24,7 @@ const ProcessSection = () => {
       subtitle: "Charla Inicial",
       description: "Tenemos una llamada corta y amigable para que nos cuentes qué necesitas y cuáles son tus metas.",
       duration: "15 min",
-      color: "brand-primary"
+      color: "from-purple-500 to-blue-500"
     },
     {
       number: 2,
@@ -50,7 +33,7 @@ const ProcessSection = () => {
       subtitle: "Taller de Creación",
       description: "En una sesión de 90 minutos, usamos IA en vivo contigo para armar la base de tu proyecto. ¡Verás cómo toma forma desde el primer momento!",
       duration: "90 min",
-      color: "brand-secondary"
+      color: "from-blue-500 to-cyan-500"
     },
     {
       number: 3,
@@ -59,7 +42,7 @@ const ProcessSection = () => {
       subtitle: "Optimización Humana",
       description: "Nuestro equipo de expertos se encarga de pulir todo: la estrategia, el diseño y los textos para que quede perfecto y listo para vender.",
       duration: "5-7 días",
-      color: "brand-accent"
+      color: "from-cyan-500 to-purple-500"
     },
     {
       number: 4,
@@ -68,138 +51,166 @@ const ProcessSection = () => {
       subtitle: "Lanzamiento y Seguimiento",
       description: "Lanzamos tu nuevo motor de crecimiento y empezamos a ver los resultados juntos. ¡Tu única tarea será disfrutar del viaje!",
       duration: "Ongoing",
-      color: "brand-primary"
+      color: "from-purple-500 to-pink-500"
     }
   ];
 
+  const handlePrevStep = () => {
+    setActiveStep((prev) => (prev - 1 + 4) % 4);
+  };
+
+  const handleNextStep = () => {
+    setActiveStep((prev) => (prev + 1) % 4);
+  };
+
+  const currentStep = steps[activeStep];
+  const IconComponent = currentStep.icon;
+
   return (
-    <section id="proceso" className="py-20 bg-surface/50 geometric-bg">
-      <div className="absolute inset-0 bg-gradient-to-bl from-brand-secondary/5 via-transparent to-brand-primary/5" />
-      <div className="absolute inset-0 pattern-dots opacity-25" />
-      <div className="container mx-auto px-4 relative z-10">
-        <div ref={sectionRef} className="max-w-6xl mx-auto">
+    <section id="proceso" className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
+        <div className="max-w-4xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black mb-6">
-              <span className="text-foreground">Nuestro </span>
-              <span className="text-gradient">Proceso</span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-white">
+              Nuestro <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Proceso</span>
             </h2>
-            <h3 className="text-2xl font-bold text-brand-accent mb-6">
-              ¡Más fácil imposible!
-            </h3>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Empezar a crecer con nosotros es súper sencillo.
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              ¡Más fácil imposible! Empezar a crecer con nosotros es súper sencillo.
             </p>
           </div>
 
-          {/* Process Steps */}
-          <div className="relative">
-            {/* Connection Line */}
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-primary transform -translate-y-1/2 z-0" />
-            
-            <div className="grid lg:grid-cols-4 gap-8 lg:gap-4 relative z-10">
-              {steps.map((step, index) => {
-                const IconComponent = step.icon;
-                return (
-                  <div
-                    key={index}
-                    className="process-step opacity-0 group"
-                  >
-                    <div className="glass-card p-8 rounded-2xl hover:border-brand-primary/40 transition-all duration-500 hover-glow relative">
-                      {/* Step Number */}
-                      <div className="absolute -top-4 left-8">
-                        <div className="w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center border-4 border-background group-hover:animate-glow">
-                          <span className="text-white font-bold text-xl">{step.number}</span>
-                        </div>
-                      </div>
-
-                      {/* Icon */}
-                      <div className="mb-6 pt-4">
-                        <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:animate-float">
-                          <IconComponent className="w-8 h-8 text-white" />
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="space-y-4">
-                        <div>
-                          <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-brand-primary transition-colors duration-300">
-                            {step.title}
-                          </h3>
-                          <p className="text-brand-primary font-semibold">
-                            {step.subtitle}
-                          </p>
-                        </div>
-
-                        <p className="text-muted-foreground leading-relaxed">
-                          {step.description}
-                        </p>
-
-                        {/* Duration Badge */}
-                        <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full">
-                          <div className="w-2 h-2 bg-brand-secondary rounded-full animate-pulse" />
-                          <span className="text-sm font-medium text-brand-secondary">
-                            {step.duration}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Arrow for desktop */}
-                      {index < steps.length - 1 && (
-                        <div className="hidden lg:block absolute top-1/2 -right-6 transform -translate-y-1/2 z-20">
-                          <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center">
-                            <ArrowRight className="w-6 h-6 text-white" />
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Hover Effect Line */}
-                      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-primary rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                    </div>
+          {/* Main Slider Container */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {/* Central Card */}
+            <div className="bg-slate-800/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+              {/* Glow Effect */}
+              <div className={`absolute inset-0 bg-gradient-to-r ${currentStep.color} opacity-5 rounded-3xl`} />
+              <div className={`absolute -inset-1 bg-gradient-to-r ${currentStep.color} opacity-20 rounded-3xl blur-xl`} />
+              
+              <div className="relative z-10">
+                {/* Step Number and Icon */}
+                <div className="flex flex-col items-center mb-8">
+                  <div className={`w-20 h-20 md:w-24 md:h-24 bg-gradient-to-r ${currentStep.color} rounded-full flex items-center justify-center mb-4 shadow-2xl`}>
+                    <IconComponent className="w-10 h-10 md:w-12 md:h-12 text-white" />
                   </div>
-                );
-              })}
+                  <div className="text-4xl md:text-6xl font-black text-white mb-2">
+                    {currentStep.number}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-2xl md:text-4xl font-bold text-white mb-2">
+                      {currentStep.title}
+                    </h3>
+                    <p className={`text-lg md:text-xl font-semibold bg-gradient-to-r ${currentStep.color} bg-clip-text text-transparent`}>
+                      {currentStep.subtitle}
+                    </p>
+                  </div>
+
+                  <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                    {currentStep.description}
+                  </p>
+
+                  {/* Duration Badge */}
+                  <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+                    <div className={`w-3 h-3 bg-gradient-to-r ${currentStep.color} rounded-full animate-pulse`} />
+                    <span className="text-white font-medium">
+                      {currentStep.duration}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <button
+              onClick={handlePrevStep}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group z-20"
+            >
+              <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+            </button>
+
+            <button
+              onClick={handleNextStep}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group z-20"
+            >
+              <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+            </button>
+          </div>
+
+          {/* Step Indicators */}
+          <div className="flex justify-center gap-3 mt-8">
+            {steps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveStep(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === activeStep 
+                    ? `bg-gradient-to-r ${currentStep.color} shadow-lg` 
+                    : 'bg-white/20 hover:bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Progress Bar */}
+          <div className="mt-6 max-w-md mx-auto">
+            <div className="w-full bg-white/10 rounded-full h-1">
+              <div 
+                className={`h-1 bg-gradient-to-r ${currentStep.color} rounded-full transition-all duration-300`}
+                style={{ width: `${((activeStep + 1) / steps.length) * 100}%` }}
+              />
             </div>
           </div>
 
-          {/* Bottom CTA Section */}
-          <div className="mt-20 text-center">
-            <div className="glass-strong p-12 rounded-3xl border border-brand-secondary/20 relative overflow-hidden">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-4 left-4 w-24 h-24 border border-brand-primary rounded-full animate-float" />
-                <div className="absolute bottom-4 right-4 w-32 h-32 border border-brand-secondary rounded-full animate-float" style={{animationDelay: '2s'}} />
-              </div>
-
+          {/* CTA Section */}
+          <div className="mt-16 text-center">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10" />
+              
               <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-4 text-gradient">
-                  ¿Listo para Automatizar tu Negocio?
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">
+                  ¿Listo para <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Automatizar</span> tu Negocio?
                 </h3>
-                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
                   Programa una consulta estratégica gratuita y descubre cómo podemos generar resultados 
                   medibles en tu empresa. No es una llamada de ventas, es una sesión de estrategia real.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                  <div className="flex items-center gap-4 text-center">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center animate-glow">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-2xl">
                       <MessageCircle className="w-8 h-8 text-white" />
                     </div>
                     <div className="text-left">
-                      <div className="font-bold text-foreground">15 Minutos</div>
-                      <div className="text-sm text-muted-foreground">Consulta Gratuita</div>
+                      <div className="font-bold text-white">15 Minutos</div>
+                      <div className="text-sm text-gray-400">Consulta Gratuita</div>
                     </div>
                   </div>
                   
-                  <ArrowRight className="w-6 h-6 text-brand-primary hidden sm:block" />
+                  <div className="w-8 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 hidden sm:block" />
                   
-                  <div className="flex items-center gap-4 text-center">
-                    <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center animate-glow" style={{animationDelay: '1s'}}>
-                      <Rocket className="w-8 h-8 text-black" />
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center shadow-2xl">
+                      <Rocket className="w-8 h-8 text-white" />
                     </div>
                     <div className="text-left">
-                      <div className="font-bold text-foreground">Resultados</div>
-                      <div className="text-sm text-muted-foreground">En 30 días</div>
+                      <div className="font-bold text-white">Resultados</div>
+                      <div className="text-sm text-gray-400">En 30 días</div>
                     </div>
                   </div>
                 </div>
