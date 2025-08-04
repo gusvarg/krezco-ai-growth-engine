@@ -71,11 +71,33 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contacto" className="py-12 md:py-20 bg-gradient-to-br from-surface to-background geometric-bg">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background to-surface/30" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+    <section id="contacto" className="py-12 md:py-20 relative overflow-hidden">
+      {/* Universe Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900" />
+      
+      {/* Stars */}
+      <div className="absolute inset-0">
+        {[...Array(80)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full opacity-30 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 1.5 + 0.5}px`,
+              height: `${Math.random() * 1.5 + 0.5}px`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${Math.random() * 6 + 3}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Gentle cosmic glow */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">

@@ -42,12 +42,34 @@ const SolutionSection = () => {
   ];
 
   return (
-    <section className="py-12 md:py-20 relative overflow-hidden geometric-bg">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background to-surface/30" />
-      <div className="absolute inset-0 bg-gradient-to-bl from-brand-secondary/5 via-transparent to-brand-accent/5" />
-      <div className="absolute inset-0 pattern-grid opacity-20" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl" />
+    <section className="py-12 md:py-20 relative overflow-hidden">
+      {/* Universe Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900" />
+      
+      {/* Stars */}
+      <div className="absolute inset-0">
+        {[...Array(120)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full opacity-40 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 1.5 + 0.5}px`,
+              height: `${Math.random() * 1.5 + 0.5}px`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${Math.random() * 5 + 3}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Cosmic elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-10 right-10 w-20 h-20 bg-brand-secondary/20 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}} />
+        <div className="absolute bottom-20 left-20 w-32 h-32 bg-brand-accent/15 rounded-full blur-2xl animate-float" style={{animationDelay: '4s'}} />
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">

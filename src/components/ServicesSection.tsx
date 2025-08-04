@@ -122,9 +122,48 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="soluciones" className="py-12 md:py-20 bg-surface/30 geometric-bg">
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-accent/5" />
-      <div className="absolute inset-0 pattern-grid opacity-20" />
+    <section id="soluciones" className="py-12 md:py-20 relative overflow-hidden">
+      {/* Universe Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900" />
+      
+      {/* Stars */}
+      <div className="absolute inset-0">
+        {[...Array(150)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full opacity-60 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 2 + 1}px`,
+              height: `${Math.random() * 2 + 1}px`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${Math.random() * 3 + 2}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Shooting stars */}
+      <div className="absolute inset-0">
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-px h-24 bg-gradient-to-t from-transparent via-white to-transparent opacity-70 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              transform: `rotate(${Math.random() * 360}deg)`,
+              animationDelay: `${i * 2}s`,
+              animationDuration: '4s'
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Subtle glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-secondary/5" />
+      
       <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">
           {/* Section Header */}
