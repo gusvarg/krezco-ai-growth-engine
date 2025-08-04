@@ -5,16 +5,19 @@ const ProcessSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const animationObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const steps = entry.target.querySelectorAll('.process-step');
+            const steps = entry.target.querySelectorAll('.process-step:not(.animated)');
             steps.forEach((step, index) => {
               setTimeout(() => {
-                step.classList.add('animate-slide-up');
+                step.classList.add('animate-slide-up', 'animated');
+                step.classList.remove('opacity-0');
               }, index * 300);
             });
+            // Desconectar el observer después de animar
+            animationObserver.unobserve(entry.target);
           }
         });
       },
@@ -22,10 +25,12 @@ const ProcessSection = () => {
     );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      animationObserver.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      animationObserver.disconnect();
+    };
   }, []);
 
   const steps = [
