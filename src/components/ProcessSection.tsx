@@ -110,27 +110,62 @@ const ProcessSection = () => {
   const IconComponent = currentStep.icon;
 
   return (
-    <section ref={sectionRef} id="proceso" className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900">
-      {/* Background Image with parallax zoom effect */}
+    <section ref={sectionRef} id="proceso" className="min-h-screen relative overflow-hidden">
+      {/* Main background with parallax */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-300 ease-out"
+        className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900"
         style={{
           backgroundImage: "url('/lovable-uploads/770a16d6-8efe-4691-bbf2-50710713e091.png')",
-          transform: `scale(${zoomScale})`
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          transform: `scale(${zoomScale})`,
+          transition: 'transform 0.3s ease-out'
         }}
       />
       
-      {/* Gradient overlay to blend with background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-purple-900/40 to-slate-900/60" />
-      
-      {/* Enhanced glass overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/10" />
-      
-      {/* Subtle animated elements */}
+      {/* Hero background animations container */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+        {/* Top animation layer */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              background: 'radial-gradient(ellipse at center top, rgba(139, 92, 246, 0.3) 0%, transparent 60%)',
+              transform: `translateY(${scrollY * -0.1}px)`
+            }}
+          />
+        </div>
+        
+        {/* Bottom animation layers */}
+        <div className="absolute inset-0">
+          {/* Animated lines */}
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bottom-0 left-0 right-0 h-px opacity-30"
+              style={{
+                background: `linear-gradient(90deg, transparent, rgb(139, 92, 246), transparent)`,
+                transform: `translateY(-${i * 20}px) translateX(${Math.sin(Date.now() * 0.001 + i) * 50}px)`,
+                animation: `float 3s ease-in-out infinite`,
+                animationDelay: `${i * 0.5}s`
+              }}
+            />
+          ))}
+          
+          {/* Glowing rays */}
+          <div 
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-96 opacity-20"
+            style={{
+              background: 'conic-gradient(from 180deg at 50% 100%, transparent, rgba(139, 92, 246, 0.5), transparent)',
+              animation: 'pulse 4s ease-in-out infinite'
+            }}
+          />
+        </div>
       </div>
+      
+      {/* Final overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-transparent to-slate-900/40" />
 
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="max-w-4xl mx-auto">
