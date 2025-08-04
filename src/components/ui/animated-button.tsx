@@ -20,11 +20,11 @@ const buttonVariants = cva("inline-flex items-center justify-center gap-2 whites
       gradient: "bg-gradient-primary text-white font-bold hover:scale-105 transform transition-smooth animate-gradient"
     },
     size: {
-      default: "h-9 px-4 py-2",
-      sm: "h-8 rounded-md px-3 text-xs",
-      lg: "h-12 rounded-lg px-8 text-base",
-      xl: "h-14 rounded-xl px-12 text-lg",
-      icon: "h-9 w-9"
+      default: "h-11 px-6 py-3",
+      sm: "h-10 rounded-md px-4 py-2.5 text-xs",
+      lg: "h-14 rounded-lg px-10 py-4 text-base",
+      xl: "h-16 rounded-xl px-14 py-5 text-lg",
+      icon: "h-11 w-11"
     }
   },
   defaultVariants: {
