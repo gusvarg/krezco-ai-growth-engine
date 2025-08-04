@@ -82,7 +82,7 @@ const ProblemsSection = () => {
   ];
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-12 md:py-20 relative overflow-hidden">
       {/* Fondo de ondas luminosas con parallax suave */}
       <div 
         ref={backgroundRef}
@@ -102,23 +102,23 @@ const ProblemsSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-6">
+          <div className="text-center mb-8 md:mb-16 px-4 md:px-0">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6">
               <span className="text-foreground">¿Te suena </span>
               <span className="text-gradient">familiar?</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base md:text-xl text-muted-foreground max-w-3xl mx-auto">
               Lo entendemos, competir en el mundo digital de hoy es complicado.
             </p>
-            <div className="mt-6">
-              <span className="inline-block glass px-6 py-3 rounded-full text-sm font-medium">
+            <div className="mt-4 md:mt-6">
+              <span className="inline-block glass px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium">
                 Si algo de esto te ha pasado, ¡tranquilo! Son los problemas que la IA vino a solucionar.
               </span>
             </div>
           </div>
 
           {/* Problems Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4 px-4 md:px-0">
             {problems.map((problem, index) => {
               const IconComponent = problem.icon;
               return (
@@ -126,26 +126,26 @@ const ProblemsSection = () => {
                   key={index}
                   className="problem-card opacity-0 group"
                 >
-                  <div className="glass-card p-8 rounded-2xl hover:border-brand-primary/40 transition-all duration-500 hover-glow hover:scale-105">
+                  <div className="glass-card p-6 md:p-8 rounded-2xl hover:border-brand-primary/40 transition-all duration-500 hover-glow hover:scale-105">
                     {/* Icon */}
-                    <div className="mb-6">
-                      <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center group-hover:animate-float">
-                        <IconComponent className="w-8 h-8 text-white" />
+                    <div className="mb-4 md:mb-6">
+                      <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-accent rounded-xl flex items-center justify-center group-hover:animate-float">
+                        <IconComponent className="w-6 h-6 md:w-8 md:h-8 text-white" />
                       </div>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold mb-4 text-foreground group-hover:text-brand-primary transition-colors duration-300">
+                    <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-foreground group-hover:text-brand-primary transition-colors duration-300">
                       {problem.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                       {problem.description}
                     </p>
 
                     {/* Hover Effect Line */}
-                    <div className="mt-6 h-1 bg-gradient-primary rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    <div className="mt-4 md:mt-6 h-1 bg-gradient-primary rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                   </div>
                 </div>
               );
@@ -153,9 +153,9 @@ const ProblemsSection = () => {
           </div>
 
           {/* Bottom Message */}
-          <div className="text-center mt-16">
-            <div className="glass p-8 rounded-2xl border border-brand-secondary/20 max-w-2xl mx-auto">
-              <p className="text-lg text-foreground">
+          <div className="text-center mt-8 md:mt-16 px-4 md:px-0">
+            <div className="glass p-4 md:p-8 rounded-2xl border border-brand-secondary/20 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-foreground">
                 <span className="font-bold text-brand-secondary">¿Reconoces alguno de estos desafíos?</span>
                 <br />
                 <span className="text-muted-foreground">

@@ -108,40 +108,40 @@ const HeroSection = () => {
       animationDelay: '4s'
     }} />
       
-      <div ref={heroRef} className="container mx-auto px-4 py-20 relative z-10">
+      <div ref={heroRef} className="container mx-auto px-4 py-16 md:py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Animated Badge */}
-          <div className="animate-on-scroll mb-8">
-            <div className="inline-flex items-center gap-2 glass px-6 py-3 rounded-full border border-brand-primary/20">
-              <Sparkles className="w-5 h-5 text-brand-secondary animate-pulse" />
-              <span className="text-sm font-medium text-muted-foreground">
+          <div className="animate-on-scroll mb-6 md:mb-8">
+            <div className="inline-flex items-center gap-2 glass px-4 md:px-6 py-2 md:py-3 rounded-full border border-brand-primary/20">
+              <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-brand-secondary animate-pulse" />
+              <span className="text-xs md:text-sm font-medium text-muted-foreground">
                 Automatización IA de Próxima Generación
               </span>
             </div>
           </div>
 
           {/* Main Headline */}
-          <div className="animate-on-scroll mb-6">
-            <h1 className="text-5xl md:text-7xl font-black mb-4 leading-tight">
+          <div className="animate-on-scroll mb-4 md:mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 leading-tight">
               <span className="text-foreground">¿Tu negocio trabaja </span>
               <span className="text-gradient animate-gradient bg-gradient-size-200">duro</span>
               <span className="text-foreground">, pero no </span>
-              <br />
+              <br className="hidden sm:block" />
               <span className="text-gradient animate-gradient bg-gradient-size-200">crece</span>
               <span className="text-foreground"> como debería?</span>
             </h1>
           </div>
 
           {/* Subheadline */}
-          <div className="animate-on-scroll mb-4">
-            <h2 className="text-2xl md:text-3xl font-bold mb-2 text-[#cf4dff]">
+          <div className="animate-on-scroll mb-4 md:mb-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-[#cf4dff]">
               Es hora de darle el poder de la Inteligencia Artificial.
             </h2>
           </div>
 
           {/* Description */}
-          <div className="animate-on-scroll mb-8">
-            <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-slate-50">
+          <div className="animate-on-scroll mb-6 md:mb-8">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed text-slate-50 px-4 md:px-0">
               Sin rodeos, ¡vamos al grano! Transformamos tu negocio en una máquina de crecimiento inteligente. 
               ¿Cómo? Usamos IA para crear activos digitales, automatizar tus ventas y lanzar campañas de marketing 
               que te consiguen resultados de verdad.
@@ -149,38 +149,38 @@ const HeroSection = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="animate-on-scroll mb-12">
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <AnimatedButton variant="hero" size="xl" className="group">
-                <Zap className="w-6 h-6 group-hover:animate-pulse" />
+          <div className="animate-on-scroll mb-8 md:mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center px-4 md:px-0">
+              <AnimatedButton variant="hero" size="lg" className="group w-full sm:w-auto">
+                <Zap className="w-5 h-5 md:w-6 md:h-6 group-hover:animate-pulse" />
                 ¡Quiero Crecer con IA!
               </AnimatedButton>
-              <AnimatedButton variant="glass" size="xl" className="group">
-                <TrendingUp className="w-6 h-6 group-hover:animate-bounce" />
-                <span className="underline">Descubre nuestras soluciones con IA</span>
+              <AnimatedButton variant="glass" size="lg" className="group w-full sm:w-auto">
+                <TrendingUp className="w-5 h-5 md:w-6 md:h-6 group-hover:animate-bounce" />
+                <span className="underline text-sm md:text-base">Descubre nuestras soluciones</span>
               </AnimatedButton>
             </div>
           </div>
 
           {/* Growth Visualization */}
-          <div className="animate-on-scroll">
+          <div className="animate-on-scroll px-4 md:px-0">
             <div className="relative max-w-2xl mx-auto">
-              <div className="glass-card p-8 rounded-2xl">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="text-left">
-                    <div className="text-sm text-muted-foreground">Tu negocio HOY</div>
-                    <div className="text-2xl font-bold text-brand-primary">Trabajando Duro</div>
+              <div className="glass-card p-4 md:p-8 rounded-2xl">
+                <div className="flex flex-col md:flex-row items-center md:justify-between gap-4 md:gap-0 mb-4 md:mb-6">
+                  <div className="text-center md:text-left">
+                    <div className="text-xs md:text-sm text-muted-foreground">Tu negocio HOY</div>
+                    <div className="text-lg md:text-2xl font-bold text-brand-primary">Trabajando Duro</div>
                   </div>
-                  <div className="flex-1 mx-8">
+                  <div className="flex-1 mx-0 md:mx-8 w-full md:w-auto">
                     <div className="h-2 bg-gradient-primary rounded-full animate-gradient bg-gradient-size-200"></div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-sm text-muted-foreground">Con Krezco IA</div>
-                    <div className="text-2xl font-bold text-brand-secondary">Crecimiento Inteligente</div>
+                  <div className="text-center md:text-right">
+                    <div className="text-xs md:text-sm text-muted-foreground">Con Krezco IA</div>
+                    <div className="text-lg md:text-2xl font-bold text-brand-secondary">Crecimiento Inteligente</div>
                   </div>
                 </div>
                 <div className="text-center">
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-xs md:text-sm text-muted-foreground">
                     Transformamos tu esfuerzo en resultados exponenciales
                   </span>
                 </div>

@@ -29,24 +29,24 @@ const Header = () => {
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled ? 'glass backdrop-blur-xl border-b border-border/20' : 'bg-transparent'
       }`}>
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-2 md:py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center">
               <img 
                 src="/lovable-uploads/ca98e6a0-6a33-42ef-a71d-74da28a170a6.png" 
                 alt="Krezco Digital" 
-                className="h-16 w-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(33,207,255,0.5)] cursor-pointer slow-pulse"
+                className="h-10 md:h-16 w-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(33,207,255,0.5)] cursor-pointer slow-pulse"
               />
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-foreground hover:text-brand-primary transition-colors duration-300 font-medium"
+                  className="text-foreground hover:text-brand-primary transition-colors duration-300 font-medium text-sm lg:text-base"
                 >
                   {item.label}
                 </a>
@@ -57,10 +57,11 @@ const Header = () => {
             <div className="hidden md:block">
               <AnimatedButton 
                 variant="hero" 
-                size="lg"
+                size="sm"
                 onClick={() => setIsSchedulingOpen(true)}
+                className="text-xs lg:text-sm"
               >
-                Agenda una consulta ahora!
+                Agenda consulta
               </AnimatedButton>
             </div>
 
@@ -82,7 +83,7 @@ const Header = () => {
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="absolute top-0 right-0 h-full w-64 glass-strong p-6 mt-20">
+          <div className="absolute top-0 right-0 h-full w-72 glass-strong p-6 mt-14">
             <nav className="flex flex-col space-y-6">
               {navItems.map((item) => (
                 <a

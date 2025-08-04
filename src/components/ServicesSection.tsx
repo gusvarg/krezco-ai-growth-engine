@@ -122,46 +122,46 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="soluciones" className="py-20 bg-surface/30 geometric-bg">
+    <section id="soluciones" className="py-12 md:py-20 bg-surface/30 geometric-bg">
       <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-accent/5" />
       <div className="absolute inset-0 pattern-grid opacity-20" />
       <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-4xl md:text-5xl font-black mb-6">
+          <div className="text-center mb-8 md:mb-16 animate-on-scroll px-4 md:px-0">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6">
               <span className="text-foreground">Nuestros Planes y </span>
               <span className="text-gradient">Servicios con IA</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base md:text-xl text-muted-foreground max-w-3xl mx-auto">
               Encuentra el plan perfecto para potenciar tu negocio.
             </p>
-            <div className="mt-6">
-              <span className="inline-block glass px-6 py-3 rounded-full text-sm font-medium">
+            <div className="mt-4 md:mt-6">
+              <span className="inline-block glass px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium">
                 Soluciones inteligentes, sencillas y listas para darte resultados.
               </span>
             </div>
           </div>
 
           {/* Services Tabs */}
-          <div className="animate-on-scroll">
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="animate-on-scroll px-4 md:px-0">
+            <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
                   <button
                     key={index}
                     onClick={() => setActiveTab(index)}
-                    className={`flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 ${
+                    className={`flex items-center gap-2 md:gap-3 px-3 md:px-6 py-3 md:py-4 rounded-xl transition-all duration-300 text-xs md:text-sm ${
                       activeTab === index
                         ? 'glass-strong border-2 border-brand-primary/50 text-brand-primary'
                         : 'glass border border-border/20 hover:border-brand-primary/30 text-muted-foreground hover:text-foreground'
                     }`}
                   >
-                    <IconComponent className="w-5 h-5" />
+                    <IconComponent className="w-4 h-4 md:w-5 md:h-5" />
                     <div className="text-left">
-                      <div className="font-semibold text-sm">{service.title}</div>
-                      <div className="text-xs opacity-75">{service.subtitle}</div>
+                      <div className="font-semibold text-xs md:text-sm">{service.title}</div>
+                      <div className="text-xs opacity-75 hidden md:block">{service.subtitle}</div>
                     </div>
                   </button>
                 );
@@ -169,56 +169,56 @@ const ServicesSection = () => {
             </div>
 
             {/* Active Service Content */}
-            <div className="glass-strong p-8 rounded-3xl border border-brand-primary/20">
-              <div className="mb-8">
-                <div className="flex items-center gap-4 mb-4">
+            <div className="glass-strong p-4 md:p-8 rounded-3xl border border-brand-primary/20">
+              <div className="mb-6 md:mb-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4 mb-4">
                   {React.createElement(services[activeTab].icon, {
-                    className: "w-12 h-12 text-brand-primary"
+                    className: "w-10 h-10 md:w-12 md:h-12 text-brand-primary"
                   })}
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground">
                       {services[activeTab].title}
                     </h3>
-                    <p className="text-brand-primary font-semibold">
+                    <p className="text-brand-primary font-semibold text-sm md:text-base">
                       {services[activeTab].subtitle}
                     </p>
                   </div>
                 </div>
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <p className="text-muted-foreground text-sm md:text-lg leading-relaxed">
                   {services[activeTab].description}
                 </p>
               </div>
 
               {/* Plans Grid */}
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid gap-4 md:gap-6 md:grid-cols-2">
                 {services[activeTab].plans.map((plan, index) => (
-                  <div key={index} className="pricing-card p-6 rounded-2xl transition-all duration-300 hover-glow">
+                  <div key={index} className="pricing-card p-4 md:p-6 rounded-2xl transition-all duration-300 hover-glow">
                     <div className="mb-4">
-                      <h4 className="text-xl font-bold text-foreground mb-2">
+                      <h4 className="text-lg md:text-xl font-bold text-foreground mb-2">
                         {plan.name}
                       </h4>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
+                      <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
                         {plan.description}
                       </p>
                     </div>
                     
-                    <div className="mb-6">
-                      <div className="text-2xl font-bold text-brand-secondary">
+                    <div className="mb-4 md:mb-6">
+                      <div className="text-lg md:text-2xl font-bold text-brand-secondary">
                         {plan.price}
                       </div>
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-2 md:space-y-3">
                       {plan.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center gap-3">
-                          <CheckCircle className="w-5 h-5 text-brand-secondary flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">{feature}</span>
+                        <div key={featureIndex} className="flex items-start gap-2 md:gap-3">
+                          <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-brand-secondary flex-shrink-0 mt-0.5" />
+                          <span className="text-xs md:text-sm text-muted-foreground">{feature}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="mt-6">
-                      <AnimatedButton variant="glass" size="lg" className="w-full">
+                    <div className="mt-4 md:mt-6">
+                      <AnimatedButton variant="glass" size="sm" className="w-full">
                         Más Información
                       </AnimatedButton>
                     </div>
