@@ -7,30 +7,32 @@
 /* Krezco Digital Design System */
 @layer base {
   :root {
-    /* Krezco Brand Colors */
-    --brand-primary: 195 100% 56%; /* #21cfff */
-    --brand-secondary: 195 100% 56%; /* #21cfff */
-    --brand-accent: 287 100% 65%; /* #cf4dff */
-    --brand-dark: 225 25% 19%; /* #25283D */
+    /* New Purple/Blue Brand Colors */
+    --brand-primary: 262 83% 58%; /* #8B5CF6 - Purple */
+    --brand-secondary: 250 100% 64%; /* #6366F1 - Indigo */
+    --brand-accent: 280 100% 70%; /* #C084FC - Light Purple */
+    --brand-dark: 240 21% 15%; /* #1E1B3E */
     
-    /* Modern UI Colors */
-    --background: 220 25% 8%; /* Dark background */
-    --surface: 225 25% 12%; /* Card backgrounds */
-    --surface-elevated: 225 25% 16%; /* Elevated surfaces */
+    /* Modern Dark UI Colors */
+    --background: 240 21% 7%; /* Deep dark background */
+    --surface: 240 19% 12%; /* Card backgrounds */
+    --surface-elevated: 240 17% 16%; /* Elevated surfaces */
+    --surface-glass: 240 15% 10%; /* Glass surfaces */
     --foreground: 0 0% 98%; /* Primary text */
-    --muted-foreground: 0 0% 65%; /* Secondary text */
+    --muted-foreground: 0 0% 70%; /* Secondary text */
     
     /* Interactive Elements */
     --primary: var(--brand-primary);
     --primary-foreground: 0 0% 100%;
     --secondary: var(--brand-secondary);
-    --secondary-foreground: 0 0% 0%;
+    --secondary-foreground: 0 0% 100%;
     --accent: var(--brand-accent);
     --accent-foreground: 0 0% 100%;
     
     /* Borders and Inputs */
-    --border: 225 25% 20%;
-    --input: 225 25% 16%;
+    --border: 240 15% 18%;
+    --border-accent: var(--brand-primary);
+    --input: 240 15% 14%;
     --ring: var(--brand-primary);
     
     /* Component Specific */
@@ -38,20 +40,27 @@
     --card-foreground: var(--foreground);
     --popover: var(--surface-elevated);
     --popover-foreground: var(--foreground);
-    --muted: 225 25% 14%;
-    --destructive: var(--brand-accent);
+    --muted: 240 15% 12%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
     /* Design System Tokens */
-    --radius: 0.75rem;
-    --shadow-glow: 0 0 40px hsl(var(--brand-primary) / 0.3);
-    --shadow-elevation: 0 20px 40px -12px hsl(0 0% 0% / 0.4);
+    --radius: 1rem;
+    --shadow-glow: 0 0 50px hsl(var(--brand-primary) / 0.4);
+    --shadow-purple: 0 0 60px hsl(var(--brand-accent) / 0.3);
+    --shadow-elevation: 0 25px 50px -12px hsl(240 21% 3% / 0.6);
     
-    /* Gradients */
+    /* Advanced Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(var(--brand-accent)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-primary) / 0.9), hsl(var(--brand-accent) / 0.9));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--brand-accent)), hsl(var(--brand-primary)));
-    --gradient-glass: linear-gradient(135deg, hsl(var(--surface) / 0.8), hsl(var(--surface-elevated) / 0.4));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--brand-secondary)), hsl(var(--brand-primary)));
+    --gradient-hero: linear-gradient(135deg, hsl(262 83% 58% / 0.9), hsl(280 100% 70% / 0.8));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--brand-accent)), hsl(var(--brand-secondary)));
+    --gradient-glass: linear-gradient(135deg, hsl(var(--surface-glass) / 0.9), hsl(var(--surface) / 0.6));
+    --gradient-border: linear-gradient(135deg, hsl(var(--brand-primary) / 0.5), hsl(var(--brand-accent) / 0.3));
+    
+    /* Background Patterns */
+    --pattern-dots: radial-gradient(circle at 1px 1px, hsl(var(--brand-primary) / 0.15) 1px, transparent 0);
+    --pattern-grid: linear-gradient(hsl(var(--brand-primary) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--brand-primary) / 0.1) 1px, transparent 1px);
     
     /* Animation Tokens */
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -199,17 +208,73 @@
     animation: matrix-rain 3s linear infinite;
   }
   
-  /* Glassmorphism */
+  /* Glassmorphism & Card Styles */
   .glass {
     background: var(--gradient-glass);
     backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--border) / 0.2);
+    border: 1px solid hsl(var(--border-accent) / 0.3);
   }
   
   .glass-strong {
     background: hsl(var(--surface) / 0.95);
     backdrop-filter: blur(30px);
-    border: 1px solid hsl(var(--border) / 0.3);
+    border: 1px solid hsl(var(--border-accent) / 0.4);
+  }
+  
+  .glass-card {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(25px);
+    border: 1px solid hsl(var(--brand-primary) / 0.2);
+    box-shadow: 
+      0 8px 32px 0 hsl(var(--brand-primary) / 0.1),
+      inset 0 1px 0 0 hsl(var(--brand-primary) / 0.1);
+  }
+  
+  .pricing-card {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(30px);
+    border: 1px solid;
+    border-image: var(--gradient-border) 1;
+    box-shadow: 
+      0 20px 40px -12px hsl(var(--brand-primary) / 0.2),
+      inset 0 1px 0 hsl(var(--brand-primary) / 0.1);
+  }
+  
+  .pricing-card:hover {
+    border-image: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(var(--brand-accent))) 1;
+    box-shadow: 
+      0 25px 50px -12px hsl(var(--brand-primary) / 0.3),
+      0 0 0 1px hsl(var(--brand-primary) / 0.2);
+  }
+  
+  /* Background Patterns */
+  .pattern-dots {
+    background-image: var(--pattern-dots);
+    background-size: 20px 20px;
+  }
+  
+  .pattern-grid {
+    background-image: var(--pattern-grid);
+    background-size: 40px 40px;
+  }
+  
+  .geometric-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .geometric-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(135deg, transparent 25%, hsl(var(--brand-primary) / 0.05) 25%, hsl(var(--brand-primary) / 0.05) 50%, transparent 50%),
+      linear-gradient(45deg, transparent 25%, hsl(var(--brand-accent) / 0.03) 25%, hsl(var(--brand-accent) / 0.03) 50%, transparent 50%);
+    background-size: 60px 60px, 40px 40px;
+    pointer-events: none;
   }
   
   /* Interactive Effects */

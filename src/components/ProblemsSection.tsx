@@ -54,8 +54,10 @@ const ProblemsSection = () => {
   ];
 
   return (
-    <section ref={parallaxRef} className="py-20 bg-surface/50 parallax-section">
-      <div className="container mx-auto px-4">
+    <section ref={parallaxRef} className="py-20 bg-surface/50 parallax-section geometric-bg">
+      <div className="absolute inset-0 bg-gradient-to-tr from-brand-accent/5 via-transparent to-brand-secondary/5" />
+      <div className="absolute inset-0 pattern-grid opacity-15" />
+      <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -82,7 +84,7 @@ const ProblemsSection = () => {
                   key={index}
                   className="problem-card opacity-0 group"
                 >
-                  <div className="glass-strong p-8 rounded-2xl border border-border/20 hover:border-brand-primary/30 transition-all duration-500 hover-glow hover:scale-105">
+                  <div className="glass-card p-8 rounded-2xl hover:border-brand-primary/40 transition-all duration-500 hover-glow hover:scale-105">
                     {/* Icon */}
                     <div className="mb-6">
                       <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center group-hover:animate-float">

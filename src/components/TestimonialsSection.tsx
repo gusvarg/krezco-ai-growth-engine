@@ -79,9 +79,11 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section ref={parallaxRef} id="testimonios" className="py-20 relative overflow-hidden parallax-section">
+    <section ref={parallaxRef} id="testimonios" className="py-20 relative overflow-hidden parallax-section geometric-bg">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-surface/30 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/5 via-transparent to-brand-accent/5" />
+      <div className="absolute inset-0 pattern-dots opacity-25" />
       <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-brand-secondary/10 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl animate-float" style={{animationDelay: '3s'}} />
 
@@ -100,7 +102,7 @@ const TestimonialsSection = () => {
 
           {/* Main Testimonial */}
           <div className="animate-on-scroll mb-16">
-            <div className="glass-strong p-12 rounded-3xl border border-brand-primary/20 relative max-w-4xl mx-auto">
+            <div className="glass-card p-12 rounded-3xl relative max-w-4xl mx-auto">
               {/* Quote Icon */}
               <div className="absolute top-6 left-6">
                 <Quote className="w-12 h-12 text-brand-primary/30" />

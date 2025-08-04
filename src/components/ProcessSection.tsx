@@ -70,8 +70,10 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section ref={parallaxRef} id="proceso" className="py-20 bg-surface/50 parallax-section">
-      <div className="container mx-auto px-4">
+    <section ref={parallaxRef} id="proceso" className="py-20 bg-surface/50 parallax-section geometric-bg">
+      <div className="absolute inset-0 bg-gradient-to-bl from-brand-secondary/5 via-transparent to-brand-primary/5" />
+      <div className="absolute inset-0 pattern-dots opacity-25" />
+      <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-20">
@@ -100,7 +102,7 @@ const ProcessSection = () => {
                     key={index}
                     className="process-step opacity-0 group"
                   >
-                    <div className="glass-strong p-8 rounded-2xl border border-border/20 hover:border-brand-primary/30 transition-all duration-500 hover-glow relative">
+                    <div className="glass-card p-8 rounded-2xl hover:border-brand-primary/40 transition-all duration-500 hover-glow relative">
                       {/* Step Number */}
                       <div className="absolute -top-4 left-8">
                         <div className="w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center border-4 border-background group-hover:animate-glow">

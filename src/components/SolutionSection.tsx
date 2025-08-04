@@ -44,9 +44,11 @@ const SolutionSection = () => {
   ];
 
   return (
-    <section ref={parallaxRef} className="py-20 relative overflow-hidden parallax-section">
+    <section ref={parallaxRef} className="py-20 relative overflow-hidden parallax-section geometric-bg">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-background to-surface/30" />
+      <div className="absolute inset-0 bg-gradient-to-bl from-brand-secondary/5 via-transparent to-brand-accent/5" />
+      <div className="absolute inset-0 pattern-grid opacity-20" />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -94,7 +96,7 @@ const SolutionSection = () => {
                     className="animate-on-scroll group"
                     style={{animationDelay: `${index * 200}ms`}}
                   >
-                    <div className="glass-strong p-8 rounded-2xl border border-border/20 hover:border-brand-primary/30 transition-all duration-500 hover-glow h-full">
+                    <div className="glass-card p-8 rounded-2xl hover:border-brand-primary/40 transition-all duration-500 hover-glow h-full">
                       {/* Icon */}
                       <div className="mb-6">
                         <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:animate-glow">

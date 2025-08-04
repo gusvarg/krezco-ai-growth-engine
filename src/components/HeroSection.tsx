@@ -21,19 +21,23 @@ const HeroSection = () => {
     elements?.forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-  return <section ref={parallaxRef} id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden parallax-section">
+  return <section ref={parallaxRef} id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden parallax-section geometric-bg">
       <MatrixBackground />
       
-      {/* Espacial Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-surface" />
+      {/* Modern Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-surface to-surface-elevated" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/5 via-transparent to-brand-accent/5" />
       
-      {/* Estrellas espaciales */}
+      {/* Geometric Pattern Overlay */}
+      <div className="absolute inset-0 pattern-dots opacity-30" />
+      
+      {/* Floating Geometric Shapes */}
       <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => <Star key={i} className="absolute text-white animate-pulse" style={{
+        {[...Array(30)].map((_, i) => <Star key={i} className="absolute text-brand-primary animate-pulse" style={{
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        width: `${Math.random() * 4 + 2}px`,
-        height: `${Math.random() * 4 + 2}px`,
+        width: `${Math.random() * 3 + 1}px`,
+        height: `${Math.random() * 3 + 1}px`,
         animationDelay: `${Math.random() * 3}s`,
         animationDuration: `${Math.random() * 2 + 2}s`
       }} />)}
@@ -163,7 +167,7 @@ const HeroSection = () => {
           {/* Growth Visualization */}
           <div className="animate-on-scroll">
             <div className="relative max-w-2xl mx-auto">
-              <div className="glass p-8 rounded-2xl border border-brand-primary/20">
+              <div className="glass-card p-8 rounded-2xl">
                 <div className="flex items-center justify-between mb-6">
                   <div className="text-left">
                     <div className="text-sm text-muted-foreground">Tu negocio HOY</div>

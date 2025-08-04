@@ -124,8 +124,10 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section ref={parallaxRef} id="soluciones" className="py-20 bg-surface/30 parallax-section">
-      <div className="container mx-auto px-4">
+    <section ref={parallaxRef} id="soluciones" className="py-20 bg-surface/30 parallax-section geometric-bg">
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-accent/5" />
+      <div className="absolute inset-0 pattern-grid opacity-20" />
+      <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16 animate-on-scroll">
@@ -192,7 +194,7 @@ const ServicesSection = () => {
               {/* Plans Grid */}
               <div className="grid md:grid-cols-2 gap-6">
                 {services[activeTab].plans.map((plan, index) => (
-                  <div key={index} className="glass p-6 rounded-2xl border border-border/20 hover:border-brand-secondary/30 transition-all duration-300 hover-glow">
+                  <div key={index} className="pricing-card p-6 rounded-2xl transition-all duration-300 hover-glow">
                     <div className="mb-4">
                       <h4 className="text-xl font-bold text-foreground mb-2">
                         {plan.name}
