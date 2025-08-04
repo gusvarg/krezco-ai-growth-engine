@@ -67,26 +67,32 @@ const ProcessSection = () => {
   const IconComponent = currentStep.icon;
 
   return (
-    <section id="proceso" className="min-h-screen relative overflow-hidden">
-      {/* Background Image */}
+    <section id="proceso" className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900">
+      {/* Background Image with blend effect */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-multiply"
         style={{
           backgroundImage: "url('/lovable-uploads/770a16d6-8efe-4691-bbf2-50710713e091.png')"
         }}
       />
       
-      {/* Dark overlay for better readability */}
-      <div className="absolute inset-0 bg-background/40" />
+      {/* Enhanced glass overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/10" />
+      
+      {/* Subtle animated elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+      </div>
 
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-black mb-6 text-white">
-              Nuestro <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Proceso</span>
+              Nuestro <span className="text-gradient">Proceso</span>
             </h2>
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               ¡Más fácil imposible! Empezar a crecer con nosotros es súper sencillo.
             </p>
           </div>
