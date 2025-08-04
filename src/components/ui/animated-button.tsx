@@ -11,10 +11,11 @@ const buttonVariants = cva("inline-flex items-center justify-center gap-2 whites
       secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
       ghost: "hover:bg-accent hover:text-accent-foreground",
       link: "text-primary underline-offset-4 hover:underline",
-      // Krezco Custom Variants
-      hero: "bg-gradient-accent text-white font-bold shadow-glow hover:shadow-elevation hover:scale-105 transform transition-all duration-300",
-      glow: "bg-brand-primary text-white font-bold animate-glow hover:scale-105 transform transition-all duration-300",
-      glass: "glass text-foreground hover:bg-surface-elevated/80 backdrop-blur-md border border-border/20",
+      // Krezco Custom Variants - Updated with new styles
+      hero: "bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-bold shadow-[0_0_30px_rgba(147,51,234,0.5)] hover:shadow-[0_0_40px_rgba(147,51,234,0.8)] hover:scale-105 border border-purple-400/30",
+      generate: "bg-gradient-to-r from-purple-500 to-purple-700 text-white rounded-full font-bold shadow-[0_0_25px_rgba(168,85,247,0.6)] hover:shadow-[0_0_35px_rgba(168,85,247,0.9)] hover:scale-105 border border-purple-300/40",
+      glass: "bg-white/5 backdrop-blur-xl border border-white/20 text-white rounded-full hover:bg-white/10 hover:border-white/30 shadow-lg",
+      dark: "bg-gray-800/90 backdrop-blur-sm border border-gray-600/30 text-white rounded-full hover:bg-gray-700/90 hover:border-gray-500/50 shadow-lg",
       floating: "glass text-foreground hover:bg-surface-elevated/80 animate-float shadow-elevation",
       gradient: "bg-gradient-primary text-white font-bold hover:scale-105 transform transition-smooth animate-gradient"
     },
