@@ -5,20 +5,25 @@ const ProblemsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (isInView) {
+        setScrollY(window.scrollY);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isInView]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+          
           if (entry.isIntersecting) {
             const cards = entry.target.querySelectorAll('.problem-card');
             cards.forEach((card, index) => {
@@ -64,13 +69,13 @@ const ProblemsSection = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      {/* Fondo de ondas luminosas con parallax */}
+      {/* Fondo de ondas luminosas con parallax suave */}
       <div 
         ref={backgroundRef}
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-300 ease-out"
         style={{
           backgroundImage: "url('/lovable-uploads/3ceb6d11-9cc8-4884-a7d7-7a2f76851ab6.png')",
-          transform: `translateY(${scrollY * 0.5}px)`
+          transform: isInView ? `translateY(${scrollY * 0.1}px)` : 'translateY(0px)'
         }}
       />
       
