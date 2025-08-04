@@ -55,7 +55,7 @@ const ProblemsSection = () => {
     <section className="py-20 relative overflow-hidden">
       {/* Fondo de ondas luminosas */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/lovable-uploads/3ceb6d11-9cc8-4884-a7d7-7a2f76851ab6.png')"
         }}
