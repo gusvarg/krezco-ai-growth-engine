@@ -5,13 +5,13 @@ const ProcessSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-rotate steps every 4 seconds
+  // Auto-rotate steps every 5 seconds
   useEffect(() => {
     if (isPaused) return;
     
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % 4);
-    }, 4000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [isPaused]);
@@ -89,50 +89,58 @@ const ProcessSection = () => {
 
           {/* Main Slider Container */}
           <div 
-            className="relative"
+            className="relative overflow-hidden"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {/* Central Card */}
-            <div className="bg-slate-800/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-              {/* Glow Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${currentStep.color} opacity-5 rounded-3xl`} />
-              <div className={`absolute -inset-1 bg-gradient-to-r ${currentStep.color} opacity-20 rounded-3xl blur-xl`} />
-              
-              <div className="relative z-10">
-                {/* Step Number and Icon */}
-                <div className="flex flex-col items-center mb-8">
-                  <div className={`w-20 h-20 md:w-24 md:h-24 bg-gradient-to-r ${currentStep.color} rounded-full flex items-center justify-center mb-4 shadow-2xl`}>
-                    <IconComponent className="w-10 h-10 md:w-12 md:h-12 text-white" />
-                  </div>
-                  <div className="text-4xl md:text-6xl font-black text-white mb-2">
-                    {currentStep.number}
-                  </div>
-                </div>
+            {/* Slider Content */}
+            <div className="relative h-[500px] md:h-[600px]">
+              <div 
+                className="flex transition-transform duration-1000 ease-in-out h-full"
+                style={{ transform: `translateX(-${activeStep * 100}%)` }}
+              >
+                {steps.map((step, index) => {
+                  const IconComponent = step.icon;
+                  return (
+                    <div key={index} className="w-full flex-shrink-0 flex items-center justify-center">
+                      <div className="text-center p-8 md:p-12">
+                        {/* Step Number and Icon */}
+                        <div className="flex flex-col items-center mb-8">
+                          <div className={`w-20 h-20 md:w-24 md:h-24 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mb-4 shadow-2xl`}>
+                            <IconComponent className="w-10 h-10 md:w-12 md:h-12 text-white" />
+                          </div>
+                          <div className="text-4xl md:text-6xl font-black text-white mb-2">
+                            {step.number}
+                          </div>
+                        </div>
 
-                {/* Content */}
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-2xl md:text-4xl font-bold text-white mb-2">
-                      {currentStep.title}
-                    </h3>
-                    <p className={`text-lg md:text-xl font-semibold bg-gradient-to-r ${currentStep.color} bg-clip-text text-transparent`}>
-                      {currentStep.subtitle}
-                    </p>
-                  </div>
+                        {/* Content */}
+                        <div className="space-y-6 max-w-3xl mx-auto">
+                          <div>
+                            <h3 className="text-2xl md:text-4xl font-bold text-white mb-2">
+                              {step.title}
+                            </h3>
+                            <p className={`text-lg md:text-xl font-semibold bg-gradient-to-r ${step.color} bg-clip-text text-transparent`}>
+                              {step.subtitle}
+                            </p>
+                          </div>
 
-                  <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                    {currentStep.description}
-                  </p>
+                          <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                            {step.description}
+                          </p>
 
-                  {/* Duration Badge */}
-                  <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-                    <div className={`w-3 h-3 bg-gradient-to-r ${currentStep.color} rounded-full animate-pulse`} />
-                    <span className="text-white font-medium">
-                      {currentStep.duration}
-                    </span>
-                  </div>
-                </div>
+                          {/* Duration Badge */}
+                          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+                            <div className={`w-3 h-3 bg-gradient-to-r ${step.color} rounded-full animate-pulse`} />
+                            <span className="text-white font-medium">
+                              {step.duration}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
