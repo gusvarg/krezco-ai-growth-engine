@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { AnimatedButton } from './ui/animated-button';
-import { useParallax } from '@/hooks/useParallax';
 
 const TestimonialsSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useParallax(0.7);
 
   const testimonials = [
     {
@@ -79,7 +77,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section ref={parallaxRef} id="testimonios" className="py-20 relative overflow-hidden parallax-section geometric-bg">
+    <section id="testimonios" className="py-20 relative overflow-hidden geometric-bg">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-surface/30 to-background" />
       <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/5 via-transparent to-brand-accent/5" />

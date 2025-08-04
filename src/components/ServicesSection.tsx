@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Globe, ShoppingCart, Megaphone, Bot, CheckCircle } from 'lucide-react';
 import { AnimatedButton } from './ui/animated-button';
-import { useParallax } from '@/hooks/useParallax';
 
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useParallax(0.6);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -124,7 +122,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section ref={parallaxRef} id="soluciones" className="py-20 bg-surface/30 parallax-section geometric-bg">
+    <section id="soluciones" className="py-20 bg-surface/30 geometric-bg">
       <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-accent/5" />
       <div className="absolute inset-0 pattern-grid opacity-20" />
       <div className="container mx-auto px-4 relative z-10">

@@ -1,10 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { MessageCircle, Cpu, Users, Rocket, ArrowRight } from 'lucide-react';
-import { useParallax } from '@/hooks/useParallax';
 
 const ProcessSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useParallax(0.8);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,7 +68,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section ref={parallaxRef} id="proceso" className="py-20 bg-surface/50 parallax-section geometric-bg">
+    <section id="proceso" className="py-20 bg-surface/50 geometric-bg">
       <div className="absolute inset-0 bg-gradient-to-bl from-brand-secondary/5 via-transparent to-brand-primary/5" />
       <div className="absolute inset-0 pattern-dots opacity-25" />
       <div className="container mx-auto px-4 relative z-10">

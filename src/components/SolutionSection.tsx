@@ -1,11 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { Brain, Users, MessageSquare, Zap, ArrowRight } from 'lucide-react';
 import { AnimatedButton } from './ui/animated-button';
-import { useParallax } from '@/hooks/useParallax';
 
 const SolutionSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useParallax(0.5);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,7 +42,7 @@ const SolutionSection = () => {
   ];
 
   return (
-    <section ref={parallaxRef} className="py-20 relative overflow-hidden parallax-section geometric-bg">
+    <section className="py-20 relative overflow-hidden geometric-bg">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-background to-surface/30" />
       <div className="absolute inset-0 bg-gradient-to-bl from-brand-secondary/5 via-transparent to-brand-accent/5" />

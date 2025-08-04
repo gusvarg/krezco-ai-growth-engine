@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { AnimatedButton } from './ui/animated-button';
 import { MessageCircle, Mail, MapPin, Phone, Send, CheckCircle } from 'lucide-react';
-import { useParallax } from '@/hooks/useParallax';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +11,6 @@ const ContactSection = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useParallax(0.9);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -73,7 +71,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section ref={parallaxRef} id="contacto" className="py-20 relative overflow-hidden parallax-section">
+    <section id="contacto" className="py-20 bg-gradient-to-br from-surface to-background geometric-bg">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-background to-surface/30" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl animate-float" />

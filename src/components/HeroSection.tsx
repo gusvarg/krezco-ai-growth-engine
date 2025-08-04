@@ -2,10 +2,8 @@ import { useEffect, useRef } from 'react';
 import { AnimatedButton } from './ui/animated-button';
 import { ArrowDown, Sparkles, Zap, TrendingUp, Brain, Cpu, Network, Bot, CircuitBoard, Lightbulb, Rocket, Star } from 'lucide-react';
 import MatrixBackground from './MatrixBackground';
-import { useParallax } from '@/hooks/useParallax';
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useParallax(0.3);
   
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -21,7 +19,7 @@ const HeroSection = () => {
     elements?.forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-  return <section ref={parallaxRef} id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden parallax-section geometric-bg">
+  return <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden geometric-bg">
       <MatrixBackground />
       
       {/* Modern Gradient Background */}
