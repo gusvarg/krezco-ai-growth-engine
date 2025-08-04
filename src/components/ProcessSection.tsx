@@ -115,7 +115,7 @@ const ProcessSection = () => {
       <div 
         className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900"
         style={{
-          backgroundImage: "url('/lovable-uploads/770a16d6-8efe-4691-bbf2-50710713e091.png')",
+          backgroundImage: "url('/lovable-uploads/cb257afb-0fd3-4bee-92fc-fe945bbbfbeb.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
