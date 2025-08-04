@@ -19,29 +19,43 @@ const ProblemsSection = () => {
   }, [isInView]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const animationObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-          
           if (entry.isIntersecting) {
-            const cards = entry.target.querySelectorAll('.problem-card');
+            const cards = entry.target.querySelectorAll('.problem-card:not(.animated)');
             cards.forEach((card, index) => {
               setTimeout(() => {
-                card.classList.add('animate-slide-up');
+                card.classList.add('animate-slide-up', 'animated');
+                card.classList.remove('opacity-0');
               }, index * 200);
             });
+            // Desconectar el observer después de animar
+            animationObserver.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.1 }
     );
 
+    const parallaxObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+        });
+      },
+      { threshold: 0 }
+    );
+
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      animationObserver.observe(sectionRef.current);
+      parallaxObserver.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      animationObserver.disconnect();
+      parallaxObserver.disconnect();
+    };
   }, []);
 
   const problems = [
