@@ -120,14 +120,12 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center animate-glow">
-                <span className="text-white font-bold text-xl">K</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-gradient">Krezco Digital</h3>
-                <p className="text-sm text-muted-foreground">¡Tú Creces!</p>
-              </div>
+            <div className="flex items-center">
+              <img 
+                src="/lovable-uploads/ca98e6a0-6a33-42ef-a71d-74da28a170a6.png" 
+                alt="Krezco Digital" 
+                className="h-12 md:h-16 w-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(33,207,255,0.5)] cursor-pointer slow-pulse"
+              />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Transformamos negocios con Inteligencia Artificial. No somos una agencia más, 
