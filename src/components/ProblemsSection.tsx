@@ -52,9 +52,21 @@ const ProblemsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-surface/50 geometric-bg">
+    <section className="py-20 relative overflow-hidden">
+      {/* Fondo de ondas luminosas */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{
+          backgroundImage: "url('/lovable-uploads/3ceb6d11-9cc8-4884-a7d7-7a2f76851ab6.png')"
+        }}
+      />
+      
+      {/* Capa oscura para mejorar legibilidad */}
+      <div className="absolute inset-0 bg-background/80" />
+      
+      {/* Gradientes adicionales */}
       <div className="absolute inset-0 bg-gradient-to-tr from-brand-accent/5 via-transparent to-brand-secondary/5" />
-      <div className="absolute inset-0 pattern-grid opacity-15" />
+      <div className="absolute inset-0 pattern-grid opacity-10" />
       <div className="container mx-auto px-4 relative z-10">
         <div ref={sectionRef} className="max-w-6xl mx-auto">
           {/* Section Header */}
